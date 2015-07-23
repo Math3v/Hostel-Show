@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :sequences
+
   get 'static_pages/compose'
 
   # The priority is based upon order of creation: first created -> highest priority.

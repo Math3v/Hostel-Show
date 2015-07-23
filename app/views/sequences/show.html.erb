@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @sequence.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @sequence.description %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @sequence.data %>
+</p>
+
+<%= link_to 'Edit', edit_sequence_path(@sequence) %> |
+<%= link_to 'Back', sequences_path %>
