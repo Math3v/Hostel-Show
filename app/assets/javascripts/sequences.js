@@ -2,6 +2,22 @@ $(document).ready(function() {
 	var color = 'red';
 	var sequence = [];
 
+	console.log("Length " + $("#dataField").text().length);
+	console.log("Parsed " + JSON.parse($("#dataField").text()));
+	sequence = $("#dataField").text().length > 0 ? JSON.parse($("#dataField").text()) : [];
+	console.log("Sequence length " + sequence.length);
+	if(sequence.length > 0) {
+		var local_sequence = sequence[0];
+		$(".hostel-win").each(function(){
+			var id = $(this).attr('id');
+			var color = local_sequence[id];
+			console.log("id " + id + " color " + color);
+			$(this).css({'background-color': local_sequence[id]});
+			console.log("Positions " + sequence.length);
+			$("#positions").text(sequence.length);
+		});
+	}
+
 	function saveState() {
 		var local_sequence = {};
 		$(".hostel-win").each(function(){
@@ -83,6 +99,23 @@ $(document).ready(function() {
 		saveState();
 		getPreviousState();
 
+	});
+
+	$(function(){
+		$("#save").on('click', function() {
+			var id = 1; /* TODO */
+			var url = '/sequences/' + id;
+			$.ajax({
+				method: 'PUT',
+				url: url,
+				dataType: 'json',
+				data: {sequence: {data: JSON.stringify(sequence)}}
+				}).success(function(){
+					console.log("Success");
+				}).fail(function(){
+					console.log("Failed");
+				});
+		});
 	});
 
 });

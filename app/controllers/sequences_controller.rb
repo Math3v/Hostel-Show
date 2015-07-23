@@ -40,6 +40,9 @@ class SequencesController < ApplicationController
   # PATCH/PUT /sequences/1
   # PATCH/PUT /sequences/1.json
   def update
+    puts "============================"
+    puts params[:data]
+    puts "============================"
     respond_to do |format|
       if @sequence.update(sequence_params)
         format.html { redirect_to @sequence, notice: 'Sequence was successfully updated.' }
