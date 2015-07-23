@@ -47,10 +47,7 @@ $(document).ready(function() {
 
 	$(function() {    
 		$(".hostel-win").click(function(event) {
-		  $( "#" + event.target.id ).css({'background-color': color});
-		  /*$( "#" + event.target.id ).animate({
-		    backgroundColor: color,
-		  }, 'fast' );*/
+			$(this).animate({'background-color': color}, 'fast');
 		});
 	});
 
