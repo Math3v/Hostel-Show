@@ -2,23 +2,23 @@ $(document).ready(function() {
 	var color = 'red';
 	var sequence = [];
 
-	console.log("Length " + $("#dataField").text().length);
-	console.log("Parsed " + JSON.parse($("#dataField").text()));
+	/* Initialize persistent sequence from database */
 	sequence = $("#dataField").text().length > 0 ? JSON.parse($("#dataField").text()) : [];
-	console.log("Sequence length " + sequence.length);
 	if(sequence.length > 0) {
 		var local_sequence = sequence[0];
 		$(".hostel-win").each(function(){
 			var id = $(this).attr('id');
 			var color = local_sequence[id];
-			console.log("id " + id + " color " + color);
 			$(this).css({'background-color': local_sequence[id]});
-			console.log("Positions " + sequence.length);
-			$("#positions").text(sequence.length);
 		});
+		$("#positions").text(sequence.length);
 	}
 
 	function saveState() {
+		if(lastPosition() && (getCurrentPosition() == sequence.length)) {
+			console.log("Hit! Skipping save");
+			return;
+		}
 		var local_sequence = {};
 		$(".hostel-win").each(function(){
 			var color = $(this).css('background-color');
@@ -61,8 +61,24 @@ $(document).ready(function() {
 		return +$("#positions").text();
 	}
 
+	function lastPosition() {
+		var position = getCurrentPosition();
+		var positions = getNoPositions();
+
+		return position == positions;
+	}
+
+	function firstPosition() {
+		return getCurrentPosition() == 1;
+	}
+
 	$(".hostel-win").click(function(event) {
 		$(this).animate({'background-color': color}, 'fast');
+	});
+
+	$(".color-picker").click(function() {
+		$(".active").removeClass("active");
+		$(this).addClass("active");
 	});
 
 	$("#green").click(function(event) {
@@ -77,23 +93,29 @@ $(document).ready(function() {
 		var position = getCurrentPosition();
 		var positions = getNoPositions();
 
-		if(position < positions){
-			getNextState();
-		} else {
+		if(lastPosition()) {
 			saveState();
-			if(position == positions){
-				$("#position").text(position + 1);
-				$("#positions").text(positions + 1);
-			}
+			$("#position").text(position + 1);
+			$("#positions").text(positions + 1);
+		} else {
+			getNextState();
 		}
 	});
 
 	$("#prev").on('click', function(){
-		saveState();
+		if(firstPosition()){
+			return;
+		}
+		if(lastPosition()){
+			saveState();
+		}
 		getPreviousState();
 	});
 
 	$("#save").on('click', function() {
+		if(lastPosition()) {
+			saveState();
+		}
 		var id = 1; /* TODO */
 		var url = '/sequences/' + id;
 		$.ajax({
