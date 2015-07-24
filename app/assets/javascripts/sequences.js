@@ -14,6 +14,21 @@ $(document).ready(function() {
 		$("#positions").text(sequence.length);
 	}
 
+	$(document).keydown(function(e) {
+    switch(e.which) {
+        case 37: // left
+        	getPreviousState();
+        	break;
+
+        case 39: // right
+        	getNextState();
+        	break;
+
+        default: return;
+    }
+    e.preventDefault();
+});
+
 	function saveState() {
 		if(lastPosition() && (getCurrentPosition() == sequence.length)) {
 			console.log("Hit! Skipping save");
@@ -30,6 +45,9 @@ $(document).ready(function() {
 	}
 
 	function getPreviousState() {
+		if(firstPosition()) {
+			return;
+		}
 		var position = getCurrentPosition();
 		var local_sequence = sequence[position - 2];
 
@@ -42,6 +60,9 @@ $(document).ready(function() {
 	}
 
 	function getNextState() {
+		if(lastPosition()) {
+			return;
+		}
 		var position = getCurrentPosition();
 		var local_sequence = sequence[position];
 
@@ -78,7 +99,7 @@ $(document).ready(function() {
 		return getCurrentPosition() == 1;
 	}
 
-	$(".hostel-win").click(function(event) {
+	$(".hostel-win").click(function() {
 		$(this).animate({'background-color': color}, 'fast');
 	});
 
@@ -87,22 +108,31 @@ $(document).ready(function() {
 		$(this).addClass("active");
 	});
 
-	$("#green").click(function(event) {
+	$("#green").click(function() {
 	 	color = 'green'; 
 	});
 
-	$("#red").click(function(event) {
+	$("#red").click(function() {
 	 	color = 'red'; 
 	});
 
-	$("#next").on('click', function(){
+	$("#newFrame").click(function(){
 		var position = getCurrentPosition();
 		var positions = getNoPositions();
 
-		if(lastPosition()) {
+		if(lastPosition()){
 			saveState();
 			$("#position").text(position + 1);
 			$("#positions").text(positions + 1);
+		} else {
+			/* TODO: Insert new frame */
+			return;
+		}
+	});
+
+	$("#next").on('click', function(){
+		if(lastPosition()) {
+			return;
 		} else {
 			getNextState();
 		}
