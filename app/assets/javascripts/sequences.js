@@ -53,6 +53,12 @@ $(document).ready(function() {
 		$("#position").text(position + 1);
 	}
 
+	function clearCurrentState() {
+		$(".hostel-win").each(function(){
+			$(this).css({'background-color': 'white'});
+		});
+	}
+
 	function getCurrentPosition() {
 		return +$("#position").text();
 	}
@@ -116,7 +122,7 @@ $(document).ready(function() {
 		if(lastPosition()) {
 			saveState();
 		}
-		var id = 1; /* TODO */
+		var id = 3; /* TODO */
 		var url = '/sequences/' + id;
 		$.ajax({
 			method: 'PUT',
@@ -128,6 +134,31 @@ $(document).ready(function() {
 			}).fail(function(){
 				console.log("Failed");
 			});
+	});
+
+	$("#deleteFrame").click(function(){
+		if(sequence.length == 0) {
+			clearCurrentState();
+			return;
+		}
+		if(sequence.length == 1) {
+			clearCurrentState();
+			sequence.splice(position - 1, 1);
+		} else {
+			var position = getCurrentPosition();
+			var positions = getNoPositions();
+			sequence.splice(position - 1, 1);
+			$("#positions").text(positions - 1);
+			getPreviousState();
+		}
+	});
+
+	$("#shiftLeft").click(function(){
+		$(".hostel-win").each(function(){
+			var color = $(this).next().css('background-color');
+			console.log("Color " + color + " of " + $(this).next());
+			$(this).css({'background-color': color});
+		});
 	});
 
 });

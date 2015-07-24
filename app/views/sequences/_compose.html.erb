@@ -16,7 +16,7 @@
 
 <div class="span4">
 	<div class="btn-group" role="group" aria-label="label_1">
-		<% 4.times do |i| %>	
+		<% 5.times do |i| %>	
 			<% 8.times do |j| %>
 	  		<button id="<%= (i * 10) + (j + 1) %>" type="button" class="btn btn-default hostel-win">&nbsp;</button>
 	  	<% end %>
@@ -32,4 +32,8 @@
 <div class="span4">
 	<button type="button" class="btn btn-default" id="save">Save sequence</button>
 	<button type="button" class="btn btn-default" id="deleteFrame">Delete frame</button>
+	<div class="btn-group" role="group">
+		<button type="button" class="btn btn-default" id="shiftLeft">Shift left</button>
+		<button type="button" class="btn btn-default" id="shiftRight">Shift right</button>
+	</div>
 </div>
