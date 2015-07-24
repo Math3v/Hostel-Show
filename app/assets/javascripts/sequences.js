@@ -61,22 +61,16 @@ $(document).ready(function() {
 		return +$("#positions").text();
 	}
 
-	$(function() {    
-		$(".hostel-win").click(function(event) {
-			$(this).animate({'background-color': color}, 'fast');
-		});
+	$(".hostel-win").click(function(event) {
+		$(this).animate({'background-color': color}, 'fast');
 	});
 
-	$(function() {    
-		$("#green").click(function(event) {
-		 	color = 'green'; 
-		 });
+	$("#green").click(function(event) {
+	 	color = 'green'; 
 	});
 
-	$(function() {    
-		$("#red").click(function(event) {
-		 	color = 'red'; 
-		 });
+	$("#red").click(function(event) {
+	 	color = 'red'; 
 	});
 
 	$("#next").on('click', function(){
@@ -95,27 +89,23 @@ $(document).ready(function() {
 	});
 
 	$("#prev").on('click', function(){
-		
 		saveState();
 		getPreviousState();
-
 	});
 
-	$(function(){
-		$("#save").on('click', function() {
-			var id = 1; /* TODO */
-			var url = '/sequences/' + id;
-			$.ajax({
-				method: 'PUT',
-				url: url,
-				dataType: 'json',
-				data: {sequence: {data: JSON.stringify(sequence)}}
-				}).success(function(){
-					console.log("Success");
-				}).fail(function(){
-					console.log("Failed");
-				});
-		});
+	$("#save").on('click', function() {
+		var id = 1; /* TODO */
+		var url = '/sequences/' + id;
+		$.ajax({
+			method: 'PUT',
+			url: url,
+			dataType: 'json',
+			data: {sequence: {data: JSON.stringify(sequence)}}
+			}).success(function(){
+				console.log("Success");
+			}).fail(function(){
+				console.log("Failed");
+			});
 	});
 
 });
