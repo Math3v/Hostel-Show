@@ -1,42 +1,48 @@
-<h1><%= @sequence.title %></h1>
-
-<div class="span4">
-	<div class="btn-group" role="group">
-	  <button type="button" class="btn btn-default" id="prev">
-	  	<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-	  </button>
-	  <button type="button" class="btn btn-default" id="next">
-	  	<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-	  </button>
-	</div>
+<h1>
+	<%= @sequence.title %>
 	<label id="position">1</label>
 	<label>/</label>
 	<label id="positions">1</label>
-  <button type="button" class="btn btn-default" id="newFrame">
-  	<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-  </button>
-</div>
+</h1>
 
-<div class="span4">
-	<div class="btn-group" role="group" aria-label="label_1">
-		<% 5.times do |i| %>	
-			<% 8.times do |j| %>
-	  		<button id="<%= (i * 10) + (j + 1) %>" type="button" class="btn btn-default hostel-win">&nbsp;</button>
-	  	<% end %>
-	  	</br>
-	  <% end %>
-	</div>	
-	<div class="btn-group-vertical" role="group">
-		<div type="button" class="btn btn-default color-picker" id="green">Green</div>
-		<div type="button" class="btn btn-default color-picker active" id="red">Red</div>
-	</div>				
-</div>
+<div class="container-fluid">
+  <div class="row-fluid">
+		<div class="col-xs-3">
+		  <button type="button" class="btn btn-default" id="save">Save sequence</button>
+			<button type="button" class="btn btn-default" id="deleteFrame">Delete frame</button>
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-default" id="shiftLeft">Shift left</button>
+				<button type="button" class="btn btn-default" id="shiftRight">Shift right</button>
+			</div>
+		</div>
 
-<div class="span4">
-	<button type="button" class="btn btn-default" id="save">Save sequence</button>
-	<button type="button" class="btn btn-default" id="deleteFrame">Delete frame</button>
-	<div class="btn-group" role="group">
-		<button type="button" class="btn btn-default" id="shiftLeft">Shift left</button>
-		<button type="button" class="btn btn-default" id="shiftRight">Shift right</button>
+		<div class="col-xs-6">
+			<div class="btn-group" role="group" aria-label="label_1">
+				<% 5.times do |i| %>	
+					<% 8.times do |j| %>
+			  		<button id="<%= (i * 10) + (j + 1) %>" type="button" class="btn btn-default hostel-win">&nbsp;</button>
+			  	<% end %>
+			  	</br>
+			  <% end %>
+			</div>	
+			<div class="btn-group" role="group">
+			  <button type="button" class="btn btn-default" id="prev">
+			  	<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			  </button>
+			  <button type="button" class="btn btn-default" id="next">
+			  	<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			  </button>
+			</div>
+			
+		  <button type="button" class="btn btn-default" id="newFrame">
+		  	<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		  </button>		
+		</div>
+
+		<div class="col-xs-1">
+			<div class="btn-group-vertical" role="group">
+				<div type="button" class="btn btn-default color-picker" id="green">Green</div>
+				<div type="button" class="btn btn-default color-picker active" id="red">Red</div>
+			</div>	
 	</div>
 </div>
