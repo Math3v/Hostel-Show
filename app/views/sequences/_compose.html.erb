@@ -1,37 +1,35 @@
-<center>
-	<h1><%= @sequence.title %></h1>
+<h1><%= @sequence.title %></h1>
 
-	<div class="row">
-
-		<div class="span4">
-			<button type="button" class="btn btn-default" id="save">Save sequence</button>
-			<div class="btn-group" role="group" aria-label="...">
-			  <button type="button" class="btn btn-default" id="prev">
-			  	<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-			  </button>
-			  <button type="button" class="btn btn-default" id="next">
-			  	<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-			  </button>
-			</div>
-			<label id="position">1</label>
-			<label>/</label>
-			<label id="positions">1</label>
-		</div>
-
-		<div class="span4">
-			<div class="btn-group" role="group" aria-label="label_1">
-				<% 4.times do |i| %>	
-					<% 8.times do |j| %>
-			  		<button id="<%= (i * 10) + (j + 1) %>" type="button" class="btn btn-default hostel-win" style="margin: 5px 5px 5px 5px;">&nbsp;</button>
-			  	<% end %>
-			  	</br>
-			  <% end %>
-			</div>
-		</div>
-
-		<div class="span4">
-			<div type="button" class="btn btn-default color-picker" id="green">Green</div>
-			<div type="button" class="btn btn-default color-picker active" id="red">Red</div>
-		</div>
+<div class="span4">
+	<div class="btn-group" role="group">
+	  <button type="button" class="btn btn-default" id="prev">
+	  	<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+	  </button>
+	  <button type="button" class="btn btn-default" id="next">
+	  	<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+	  </button>
 	</div>
-</center>
+	<label id="position">1</label>
+	<label>/</label>
+	<label id="positions">1</label>
+</div>
+
+<div class="span4">
+	<div class="btn-group" role="group" aria-label="label_1">
+		<% 4.times do |i| %>	
+			<% 8.times do |j| %>
+	  		<button id="<%= (i * 10) + (j + 1) %>" type="button" class="btn btn-default hostel-win">&nbsp;</button>
+	  	<% end %>
+	  	</br>
+	  <% end %>
+	</div>	
+	<div class="btn-group-vertical" role="group">
+		<div type="button" class="btn btn-default color-picker" id="green">Green</div>
+		<div type="button" class="btn btn-default color-picker active" id="red">Red</div>
+	</div>				
+</div>
+
+<div class="span4">
+	<button type="button" class="btn btn-default" id="save">Save sequence</button>
+	<button type="button" class="btn btn-default" id="deleteFrame">Delete frame</button>
+</div>
