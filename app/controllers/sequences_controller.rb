@@ -19,6 +19,7 @@ class SequencesController < ApplicationController
 
   # GET /sequences/1/edit
   def edit
+    gon.sequence_id = @sequence.id
   end
 
   # POST /sequences

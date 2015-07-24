@@ -47,3 +47,5 @@ end
 gem 'bootstrap-sass', '~> 3.3.5'
 # JQuery UI
 gem 'jquery-ui-rails'
+
+gem 'gon'

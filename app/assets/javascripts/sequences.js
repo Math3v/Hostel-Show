@@ -152,7 +152,7 @@ $(document).ready(function() {
 		if(lastPosition()) {
 			saveState();
 		}
-		var id = 3; /* TODO */
+		var id = gon.sequence_id;
 		var url = '/sequences/' + id;
 		$.ajax({
 			method: 'PUT',
@@ -186,7 +186,6 @@ $(document).ready(function() {
 	$("#shiftLeft").click(function(){
 		$(".hostel-win").each(function(){
 			var color = $(this).next().css('background-color');
-			console.log("Color " + color + " of " + $(this).next());
 			$(this).css({'background-color': color});
 		});
 	});
