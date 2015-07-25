@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: "form-control" %>
   </div>
   <div class="field" hidden>
     <%= f.label :data %><br>
     <%= f.text_area :data, id: 'dataField' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Update sequence", class: "btn btn-default" %>
   </div>
 <% end %>
