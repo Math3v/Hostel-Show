@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('page:load', function() {
 	var color = 'red';
 	var sequence = [];
 

@@ -1,17 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <% @sequences.each do |sequence| %>
-  <div class="list-group">
-  <a href="#" class="list-group-item">
-    <h4 class="list-group-item-heading"><%= sequence.title %></h4>
-    <p class="list-group-item-text">
-      <%= sequence.description %>
-      <%= link_to 'Show', sequence %> |
-      <%= link_to 'Edit', edit_sequence_path(sequence) %> |
-      <%= link_to 'Destroy', sequence, method: :delete, data: {confirm: 'Are you sure?' }%>
-    </p>
-  </a>
+<div class="media">
+  <div class="media-left">
+    <!--a href="#">
+      <img class="media-object" src="test.png">
+    </a-->
+    <%= link_to image_tag("test.png", size: "50x50", class: "media-object"), edit_sequence_path(sequence) %>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading"><%= sequence.title %></h4>
+    <%= sequence.description %>
+  </div>
 </div>
 <% end %>
 
+<br/> <br/>
 <%= link_to 'New Sequence', new_sequence_path %>
