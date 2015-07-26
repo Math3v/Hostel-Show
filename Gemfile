@@ -44,6 +44,10 @@ group :development, :test do
   gem 'spring'
 end
 
+group :deployment do
+	gem 'rails_12factor'
+end
+
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.5'
 # JQuery UI
