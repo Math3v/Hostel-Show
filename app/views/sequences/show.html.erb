@@ -10,9 +10,31 @@
   <%= @sequence.description %>
 </p>
 
+<label id="position">1</label>
+<label>/</label>
+<label id="positions">1</label>
+
+<table class="table-bordered">
+	<tbody>
+	<% 5.times do |i| %>
+		<tr>	
+		<% 8.times do |j| %>
+			<td class="hostel-win" 
+					id="<%= (i * 10) + (j + 1) %>" 
+					style="width:50px;height:50px;">
+			</td>
+		<% end %>
+		</tr>
+	<% end %>
+	</tbody>
+</table>
+
+<div id="dataField" hidden>
+	<%= @sequence.data %>
+</div>
+
 <p>
-  <strong>Data:</strong>
-  <%= @sequence.data %>
+	<button type="button" class="btn btn-success" id="play">Play sequence</button>
 </p>
 
 <%= link_to 'Edit', edit_sequence_path(@sequence) %> |

@@ -10,6 +10,7 @@ class SequencesController < ApplicationController
   # GET /sequences/1
   # GET /sequences/1.json
   def show
+    gon.sequence_id = @sequence.id
   end
 
   # GET /sequences/new

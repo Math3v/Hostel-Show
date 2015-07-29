@@ -1,6 +1,7 @@
-$(document).on('page:load', function() {
+$(document).on('page:load ready', function() {
 	var color = 'red';
 	var sequence = [];
+	var interval;
 
 	/* Initialize persistent sequence from database */
 	sequence = $("#dataField").text().length > 0 ? JSON.parse($("#dataField").text()) : [];
@@ -27,7 +28,7 @@ $(document).on('page:load', function() {
         default: return;
     }
     e.preventDefault();
-});
+	});
 
 	function saveState() {
 		if(lastPosition() && (getCurrentPosition() == sequence.length)) {
@@ -61,6 +62,7 @@ $(document).on('page:load', function() {
 
 	function getNextState() {
 		if(lastPosition()) {
+			clearInterval(interval);
 			return;
 		}
 		var position = getCurrentPosition();
@@ -188,6 +190,10 @@ $(document).on('page:load', function() {
 			var color = $(this).next().css('background-color');
 			$(this).css({'background-color': color});
 		});
+	});
+
+	$("#play").click(function(){
+		interval = setInterval(getNextState, 200);
 	});
 
 });
