@@ -1,41 +1,51 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @sequence.title %>
-</p>
+<div class="container-fluid">
+	<div class="col-xs-9">
+		<center>
+			<h1><%= @sequence.title %></h1>
+			<label id="position">1</label>
+			<label>/</label>
+			<label id="positions">1</label>
 
-<p>
-  <strong>Description:</strong>
-  <%= @sequence.description %>
-</p>
+			<table class="table-bordered">
+				<tbody>
+					<% 5.times do |i| %>
+					<tr>	
+						<% 8.times do |j| %>
+						<td class="hostel-win" 
+						id="<%= (i * 10) + (j + 1) %>" 
+						style="width:50px;height:50px;">
+						</td>
+						<% end %>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
 
-<label id="position">1</label>
-<label>/</label>
-<label id="positions">1</label>
+			<br/>
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-success" id="play">
+					PLAY
+				</button>
+				<button type="button" class="btn btn-danger" id="reset">
+					RESET
+				</button>
+			</div>
 
-<table class="table-bordered">
-	<tbody>
-	<% 5.times do |i| %>
-		<tr>	
-		<% 8.times do |j| %>
-			<td class="hostel-win" 
-					id="<%= (i * 10) + (j + 1) %>" 
-					style="width:50px;height:50px;">
-			</td>
-		<% end %>
-		</tr>
-	<% end %>
-	</tbody>
-</table>
+			<div id="dataField" hidden>
+				<%= @sequence.data %>
+			</div>
+		</center>
+	</div>
 
-<div id="dataField" hidden>
-	<%= @sequence.data %>
+	<div class="col-xs-3">
+		<p>
+			<strong>Description:</strong>
+			<%= @sequence.description %>
+		</p>
+
+		<%= link_to 'Edit', edit_sequence_path(@sequence) %> |
+		<%= link_to 'Back', sequences_path %>
+	</div>
 </div>
-
-<p>
-	<button type="button" class="btn btn-success" id="play">Play sequence</button>
-</p>
-
-<%= link_to 'Edit', edit_sequence_path(@sequence) %> |
-<%= link_to 'Back', sequences_path %>

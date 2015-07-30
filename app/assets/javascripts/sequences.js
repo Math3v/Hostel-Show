@@ -86,6 +86,10 @@ $(document).on('page:load ready', function() {
 		return +$("#position").text();
 	}
 
+	function setCurrentPosition(position) {
+		$("#position").text(position);
+	}
+
 	function getNoPositions() {
 		return +$("#positions").text();
 	}
@@ -194,6 +198,12 @@ $(document).on('page:load ready', function() {
 
 	$("#play").click(function(){
 		interval = setInterval(getNextState, 200);
+	});
+
+	$("#reset").click(function(){
+		while(firstPosition() == false) {
+			getPreviousState();	/* TODO: faster*/
+		}
 	});
 
 });
