@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container-fluid">
-	<div class="col-xs-9">
+	<div class="col-xs-8">
 		<center>
 			<h1><%= @sequence.title %></h1>
 			<label id="position">1</label>
@@ -39,13 +39,11 @@
 		</center>
 	</div>
 
-	<div class="col-xs-3">
-		<p>
+	<div class="col-xs-4">
+		<div class="description">
 			<strong>Description:</strong>
 			<%= @sequence.description %>
-		</p>
-
-		<%= link_to 'Edit', edit_sequence_path(@sequence) %> |
-		<%= link_to 'Back', sequences_path %>
+		</div>
+			<center><%= button_to 'Edit', edit_sequence_path(@sequence), class: "btn btn-lg  btn-primary" %></center>
 	</div>
 </div>
