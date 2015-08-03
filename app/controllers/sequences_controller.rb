@@ -1,6 +1,6 @@
 class SequencesController < ApplicationController
   before_action :set_sequence, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
   # GET /sequences
   # GET /sequences.json
@@ -74,14 +74,5 @@ class SequencesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def sequence_params
       params.require(:sequence).permit(:title, :description, :data)
-    end
-
-    def authenticate
-      if user_signed_in? && (current_user.id == @sequence.user_id)
-        return
-      else
-        flash[:danger] = "Please, sign up."
-        redirect_to new_user_registration_path
-      end
     end
 end
