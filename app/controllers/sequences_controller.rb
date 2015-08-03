@@ -1,5 +1,6 @@
 class SequencesController < ApplicationController
   before_action :set_sequence, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate, only: [:edit, :update, :destroy]
 
   # GET /sequences
   # GET /sequences.json
@@ -27,6 +28,7 @@ class SequencesController < ApplicationController
   # POST /sequences.json
   def create
     @sequence = Sequence.new(sequence_params)
+    @sequence.user_id = current_user.id
 
     respond_to do |format|
       if @sequence.save
@@ -42,9 +44,6 @@ class SequencesController < ApplicationController
   # PATCH/PUT /sequences/1
   # PATCH/PUT /sequences/1.json
   def update
-    puts "============================"
-    puts params[:data]
-    puts "============================"
     respond_to do |format|
       if @sequence.update(sequence_params)
         format.html { redirect_to @sequence, notice: 'Sequence was successfully updated.' }
@@ -75,5 +74,14 @@ class SequencesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def sequence_params
       params.require(:sequence).permit(:title, :description, :data)
+    end
+
+    def authenticate
+      if user_signed_in? && (current_user.id == @sequence.user_id)
+        return
+      else
+        flash[:danger] = "Please, sign up."
+        redirect_to new_user_registration_path
+      end
     end
 end

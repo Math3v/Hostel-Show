@@ -1,4 +1,5 @@
 class Sequence < ActiveRecord::Base
-	#serialize :data
+	belongs_to :user
+	
 	validates :title, presence: true
 end
