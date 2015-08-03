@@ -5,7 +5,11 @@ class SequencesController < ApplicationController
   # GET /sequences
   # GET /sequences.json
   def index
-    @sequences = Sequence.all
+    if params[:user_id]
+      @sequences = Sequence.where(user_id: params[:user_id])
+    else
+      @sequences = Sequence.all
+    end
   end
 
   # GET /sequences/1
