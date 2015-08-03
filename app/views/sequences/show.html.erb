@@ -44,7 +44,7 @@
 			<strong>Description:</strong>
 			<%= @sequence.description %>
 		</div>
-		<% if user_signed_in? && (current_user.id == @sequence.user_id) %>
+		<% if can_modify? %>
 			<%= button_to 'Edit', edit_sequence_path(@sequence), class: "btn btn-primary", method: :get %>
 			<%= button_to 'Delete', @sequence, method: :delete,  class: "btn btn-danger", data: { confirm: 'Are you sure?'} %>
 		<% end %>
