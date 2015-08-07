@@ -21,6 +21,7 @@ class SequencesController < ApplicationController
   # GET /sequences/new
   def new
     @sequence = Sequence.new
+    @locations = Location.all
   end
 
   # GET /sequences/1/edit
