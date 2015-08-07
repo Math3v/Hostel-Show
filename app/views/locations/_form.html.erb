@@ -13,29 +13,29 @@
 
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :street %><br>
-    <%= f.text_field :street %>
+    <%= f.text_field :street, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :town %><br>
-    <%= f.text_field :town %>
+    <%= f.text_field :town, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :state_acronym %><br>
-    <%= f.text_field :state_acronym %>
+    <%= f.text_field :state_acronym, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :floors %><br>
-    <%= f.text_field :floors %>
+    <%= f.text_field :floors, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :per_floor %><br>
-    <%= f.text_field :per_floor %>
+    <%= f.text_field :per_floor, class: "form-control" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Add location", class: "btn btn-primary" %>
   </div>
 <% end %>
