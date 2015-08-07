@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString1
+  title: Sequence1
   description: MyText
   data: MyText
   location_id: 1
 
 two:
-  title: MyString2
+  title: Sequence2
   description: MyText
   data: MyText
   location_id: 1

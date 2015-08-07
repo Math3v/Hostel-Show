@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20150807115430) do
     t.integer  "location_id"
   end
 
-  add_index "sequences", ["title"], name: "index_sequences_on_title", unique: true, using: :btree
+  add_index "sequences", ["title"], name: "index_sequences_on_title", using: :btree
   add_index "sequences", ["user_id"], name: "index_sequences_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
