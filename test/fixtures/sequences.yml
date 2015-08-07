@@ -4,8 +4,10 @@ one:
   title: MyString1
   description: MyText
   data: MyText
+  location_id: 1
 
 two:
   title: MyString2
   description: MyText
   data: MyText
+  location_id: 1
