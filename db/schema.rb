@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803173654) do
+ActiveRecord::Schema.define(version: 20150807111026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "name",          null: false
+    t.string   "street"
+    t.string   "town"
+    t.string   "state_acronym"
+    t.decimal  "floors",        null: false
+    t.decimal  "per_floor",     null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "sequences", force: :cascade do |t|
     t.string   "title"
@@ -23,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150803173654) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
+    t.integer  "location_id"
   end
 
   add_index "sequences", ["title"], name: "index_sequences_on_title", unique: true, using: :btree
