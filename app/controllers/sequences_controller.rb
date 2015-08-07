@@ -1,6 +1,6 @@
 class SequencesController < ApplicationController
   before_action :set_sequence, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :authenticate_user_or_admin, only: [:edit, :update, :destroy]
 
   # GET /sequences
   # GET /sequences.json
@@ -27,6 +27,7 @@ class SequencesController < ApplicationController
   # GET /sequences/1/edit
   def edit
     gon.sequence_id = @sequence.id
+    @locations = Location.all
   end
 
   # POST /sequences
