@@ -3,6 +3,8 @@ require 'test_helper'
 class SequencesControllerTest < ActionController::TestCase
   setup do
     @sequence = sequences(:one)
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    sign_in FactoryGirl.create(:user)
   end
 
   test "should get index" do

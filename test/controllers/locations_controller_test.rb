@@ -3,6 +3,8 @@ require 'test_helper'
 class LocationsControllerTest < ActionController::TestCase
   setup do
     @location = locations(:one)
+    @request.env["devise.mapping"] = Devise.mappings[:admin]
+    sign_in FactoryGirl.create(:admin)
   end
 
   test "should get index" do
