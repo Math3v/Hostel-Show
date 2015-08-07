@@ -18,9 +18,9 @@
 
 		<div class="col-xs-6">
 			<div class="btn-group" role="group" aria-label="label_1">
-				<% 5.times do |i| %>	
-					<% 8.times do |j| %>
-			  		<button id="<%= (i * 10) + (j + 1) %>" type="button" class="btn btn-default hostel-win">&nbsp;</button>
+				<% floors.times do |i| %>	
+					<% per_floor.times do |j| %>
+			  		<button id="<%= get_index i, j %>" type="button" class="btn btn-default hostel-win">&nbsp;</button>
 			  	<% end %>
 			  	</br>
 			  <% end %>

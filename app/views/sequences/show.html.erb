@@ -8,11 +8,11 @@
 
 			<table class="table-bordered">
 				<tbody>
-					<% 5.times do |i| %>
+					<% floors.times do |i| %>
 					<tr>	
-						<% 8.times do |j| %>
+						<% per_floor.times do |j| %>
 						<td class="hostel-win" 
-						id="<%= (i * 10) + (j + 1) %>" 
+						id="<%= get_index i, j %>" 
 						style="width:50px;height:50px;">
 						</td>
 						<% end %>

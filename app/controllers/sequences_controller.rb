@@ -79,6 +79,6 @@ class SequencesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sequence_params
-      params.require(:sequence).permit(:title, :description, :data, :user_id)
+      params.require(:sequence).permit(:title, :description, :data, :user_id, :location_id)
     end
 end
