@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  resources :locations
-
   devise_for :users
+  
+  resources :locations
   resources :sequences
-
-  get 'static_pages/compose'
+  resources :ratings, only: :update
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
