@@ -50,7 +50,16 @@
 					<% elsif user_signed_in? %>
 					<div class="col-md-4" id="raty" data-score="<%= @rating %>"></div>
 					<% end %>
+					<div class="col-md-2 fb-share-button" 
+						data-href="https://developers.facebook.com/docs/plugins/" 
+						data-layout="button">
+					</div>
 				</div>
 			</div>
 	</div>
 </div>
+
+<meta property="og:url"                content="<%= request.original_url %>" />
+<meta property="og:type"               content="product" />
+<meta property="og:title"              content="<%= @sequence.title %>" />
+<meta property="og:description"        content="<%= @sequence.description %>" />
