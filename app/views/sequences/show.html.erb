@@ -45,14 +45,22 @@
 			<div class="container-fluid">
 				<div class="row">
 					<% if can_modify? %>
-					<div class="col-md-2"><%= button_to 'Edit', edit_sequence_path(@sequence), class: "btn btn-primary", method: :get %></div>
-					<div class="col-md-2"><%= button_to 'Delete', @sequence, method: :delete,  class: "btn btn-danger", data: { confirm: 'Are you sure?'} %></div>
+						<div class="col-md-2"><%= button_to 'Edit', edit_sequence_path(@sequence), class: "btn btn-primary", method: :get %></div>
+						<div class="col-md-2"><%= button_to 'Delete', @sequence, method: :delete,  class: "btn btn-danger", data: { confirm: 'Are you sure?'} %></div>
 					<% elsif user_signed_in? %>
-					<div class="col-md-4" id="raty" data-score="<%= @rating %>"></div>
+						<div class="col-md-4" id="raty" data-score="<%= @rating %>"></div>
 					<% end %>
-					<div class="col-md-2 fb-share-button" 
-						data-href="https://developers.facebook.com/docs/plugins/" 
-						data-layout="button">
+				</div>
+				<div class="row">&nbsp;</div>
+				<div class="row">
+					<div class="col-md-4 fb-like" 
+							data-href="<%= request.original_url %>" 
+							data-width="50"
+							data-height="50" 
+							data-layout="button_count" 
+							data-action="like" 
+							data-show-faces="true" 
+							data-share="true">
 					</div>
 				</div>
 			</div>
