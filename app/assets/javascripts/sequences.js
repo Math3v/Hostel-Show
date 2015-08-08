@@ -239,4 +239,41 @@ $(document).on('page:load ready', function() {
 		}
 	});
 
+	//Function to convert hex format to a rgb color
+	function rgb2hex(orig){
+	 var rgb = orig.replace(/\s/g,'').match(/^rgba?\((\d+),(\d+),(\d+)/i);
+	 return (rgb && rgb.length === 4) ? "#" +
+	  ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
+	  ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
+	  ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : orig;
+	}
+
+	$("#createImage").click(function (){
+		var elem_size = 50;
+		var floors = 10;
+		var per_floor = 9;
+
+		$("#canvas").attr('width', per_floor * elem_size);
+		$("#canvas").attr('height', floors * elem_size);
+		$("#canvas").slideDown();
+
+		var c = document.getElementById("canvas");
+		var ctx = c.getContext("2d");
+		var ax = 0;
+		var ay = 0;
+
+		$(".hostel-win").each(function(){
+			var color = rgb2hex($(this).css('background-color'));
+			ctx.fillStyle = color;
+			ctx.fillRect(ax, ay, elem_size, elem_size);
+			ax += elem_size;
+			if(ax >= per_floor * elem_size) {
+				ax = 0;
+				ay += elem_size;
+			}
+		});
+
+		
+	});
+
 });
