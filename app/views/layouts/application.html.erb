@@ -6,6 +6,11 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+	<meta property="og:url"                content="<%= request.original_url %>" />
+	<meta property="og:type"               content="product" />
+	<meta property="og:title"              content="<%= @sequence.title %>" />
+	<meta property="og:description"        content="<%= @sequence.description %>" />
 </head>
 <body>
 <%= render 'layouts/facebook' %>
