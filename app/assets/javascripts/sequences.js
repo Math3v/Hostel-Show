@@ -158,17 +158,26 @@ $(document).on('page:load ready', function() {
 		if(lastPosition()) {
 			saveState();
 		}
+
 		var id = gon.sequence_id;
 		var url = '/sequences/' + id;
+		var displayFlash = function (selector) {
+			$(selector).slideDown('normal', function(){ 
+					setTimeout(function (){
+						$(selector).slideUp('normal')
+					}, 1000); 
+				});
+		};
+
 		$.ajax({
 			method: 'PUT',
 			url: url,
 			dataType: 'json',
 			data: {sequence: {data: JSON.stringify(sequence)}}
 			}).success(function(){
-				console.log("Success");
+				displayFlash("#custom-success-flash");
 			}).fail(function(){
-				console.log("Failed");
+				displayFlash("#custom-error-flash");
 			});
 	});
 

@@ -1,3 +1,5 @@
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= twitterized_type(key) %>"><%= value %></div>
 <% end %>
+<div class="alert alert-success" style="display: none;" id="custom-success-flash">Sequence saved!</div>
+<div class="alert alert-danger" style="display: none;" id="custom-error-flash">Sequence cannot be saved!</div>
