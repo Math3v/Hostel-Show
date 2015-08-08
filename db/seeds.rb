@@ -15,7 +15,7 @@ if admin.nil?
 	User.create({email: 'admin@hostelshow.com', password: 'Secret12', password_confirmation: 'Secret12', admin: true})
 end
 
-user = User.find_by({email: 'mato.minarik@azet.sk', admin: false})
+user = User.find_by({email: 'user@hostelshow.com', admin: false})
 if user.nil?
 	User.create({email: 'user@hostelshow.com', password: 'secret123', password_confirmation: 'secret123', admin: false})
 end
