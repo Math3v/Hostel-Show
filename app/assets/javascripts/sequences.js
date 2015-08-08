@@ -255,7 +255,6 @@ $(document).on('page:load ready', function() {
 
 		$("#canvas").attr('width', per_floor * elem_size);
 		$("#canvas").attr('height', floors * elem_size);
-		$("#canvas").slideDown();
 
 		var c = document.getElementById("canvas");
 		var ctx = c.getContext("2d");
@@ -273,7 +272,20 @@ $(document).on('page:load ready', function() {
 			}
 		});
 
-		
+		var url = '/sequences/' + gon.sequence_id;
+		var image = c.toDataURL('image/png');
+		$.ajax({
+			method: 'PUT',
+			url: url,
+			dataType: 'json',
+			data: {sequence: {image: image}}
+			}).success(function(){
+				console.log("Success");
+				displayFlash("#custom-success-flash");
+			}).fail(function(){
+				console.log("Error");
+				displayFlash("#custom-error-flash");
+			});
 	});
 
 });

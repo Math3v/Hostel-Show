@@ -1,9 +1,18 @@
 <% @sequences.each do |sequence| %>
-  <div class="list-group">
-    <a href="<%= sequence_path(sequence) %>" class="list-group-item">
-      <h4 class="list-group-item-heading"><%= sequence.title %></h4>
-      <p class="list-group-item-text"><%= sequence.description %></p>
-      <p class="list-group-item-text">Average rating: <%= sequence.average_rating %></p>
-    </a>
+  <div class="container list-group">
+  	<div class="col-md-10">
+	    <a href="<%= sequence_path(sequence) %>" class="list-group-item">
+	    	<div class="container-fluid">
+	    		<div class="col-md-2">
+			    	<%= image_tag("sequence_#{sequence.id}.png", size: "80") %>
+		    	</div>
+		    	<div class="col-md-10">
+			      <h4 class="list-group-item-heading"><%= sequence.title %></h4>
+			      <p class="list-group-item-text"><%= sequence.description %></p>
+			      <p class="list-group-item-text">Average rating: <%= sequence.average_rating %></p>
+		    	</div>
+	    	</div>
+	    </a>
+    </div>
   </div>
 <% end %>

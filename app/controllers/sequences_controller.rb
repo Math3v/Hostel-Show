@@ -1,3 +1,5 @@
+require 'base64'
+
 class SequencesController < ApplicationController
   before_action :set_sequence, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user_or_admin, only: [:edit, :update, :destroy, :rate]
@@ -60,6 +62,10 @@ class SequencesController < ApplicationController
   # PATCH/PUT /sequences/1
   # PATCH/PUT /sequences/1.json
   def update
+    if params[:sequence][:image]
+      create_image
+      render json: @sequence, status: :ok and return
+    end
     respond_to do |format|
       if @sequence.update(sequence_params)
         format.html { redirect_to @sequence, notice: 'Sequence was successfully updated.' }
@@ -99,5 +105,14 @@ class SequencesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def sequence_params
       params.require(:sequence).permit(:title, :description, :data, :user_id, :location_id)
+    end
+
+    def create_image
+      data = params[:sequence][:image]
+      image_data = Base64.decode64(data['data:image/png;base64,'.length .. -1])
+
+      File.open("#{Rails.root}/app/assets/images/sequence_#{@sequence.id}.png", 'wb') do |f|
+        f.write image_data
+      end
     end
 end
