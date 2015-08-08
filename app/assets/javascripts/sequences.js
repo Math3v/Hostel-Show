@@ -215,4 +215,8 @@ $(document).on('page:load ready', function() {
 		}
 	});
 
+	$("#raty").raty({
+		number: 4
+	});
+
 });
