@@ -1,6 +1,6 @@
 class SequencesController < ApplicationController
   before_action :set_sequence, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user_or_admin, only: [:edit, :update, :destroy]
+  before_action :authenticate_user_or_admin, only: [:edit, :update, :destroy, :rate]
 
   # GET /sequences
   # GET /sequences.json
@@ -16,6 +16,16 @@ class SequencesController < ApplicationController
   # GET /sequences/1.json
   def show
     gon.sequence_id = @sequence.id
+    if user_signed_in?
+      sequence_rating = @sequence.ratings.where({ user_id: current_user.id }).first
+      if sequence_rating.nil?
+        @rating = 0
+      else
+        @rating = sequence_rating.score
+      end
+    else
+      @rating = @sequence.average_rating
+    end
   end
 
   # GET /sequences/new
@@ -68,6 +78,15 @@ class SequencesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to sequences_url, notice: 'Sequence was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def rate
+    @rating = Rating.find_or_create_by({sequence_id: params[:id], user_id: current_user.id})
+    if @rating.update_attribute(:score, params[:score])
+      render json: @sequence, status: :ok
+    else
+      render json: @sequence.errors, status: :unprocessable_entity
     end
   end
 

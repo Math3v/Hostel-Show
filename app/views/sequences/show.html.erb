@@ -48,7 +48,7 @@
 					<div class="col-md-2"><%= button_to 'Edit', edit_sequence_path(@sequence), class: "btn btn-primary", method: :get %></div>
 					<div class="col-md-2"><%= button_to 'Delete', @sequence, method: :delete,  class: "btn btn-danger", data: { confirm: 'Are you sure?'} %></div>
 					<% elsif user_signed_in? %>
-					<div class="col-md-4" id="raty"></div>
+					<div class="col-md-4" id="raty" data-score="<%= @rating %>"></div>
 					<% end %>
 				</div>
 			</div>

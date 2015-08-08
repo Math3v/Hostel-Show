@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
-  
+
   resources :locations
-  resources :sequences
-  resources :ratings, only: :update
+  resources :sequences do
+    member do
+      post 'rate'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

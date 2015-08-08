@@ -5,4 +5,12 @@ class Sequence < ActiveRecord::Base
 	belongs_to :location	
 
 	validates :title, presence: true
+
+	def average_rating
+		if ratings.count > 0
+			ratings.sum(:score) / ratings.count.to_f
+		else
+			0
+		end
+	end
 end

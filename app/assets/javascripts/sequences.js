@@ -105,6 +105,14 @@ $(document).on('page:load ready', function() {
 		return getCurrentPosition() == 1;
 	}
 
+	function displayFlash (selector) {
+		$(selector).slideDown('normal', function(){ 
+				setTimeout(function (){
+					$(selector).slideUp('normal')
+				}, 1000); 
+			});
+	}
+
 	$(".hostel-win").click(function() {
 		$(this).animate({'background-color': color}, 'fast');
 	});
@@ -161,13 +169,6 @@ $(document).on('page:load ready', function() {
 
 		var id = gon.sequence_id;
 		var url = '/sequences/' + id;
-		var displayFlash = function (selector) {
-			$(selector).slideDown('normal', function(){ 
-					setTimeout(function (){
-						$(selector).slideUp('normal')
-					}, 1000); 
-				});
-		};
 
 		$.ajax({
 			method: 'PUT',
@@ -216,7 +217,26 @@ $(document).on('page:load ready', function() {
 	});
 
 	$("#raty").raty({
-		number: 4
+		number: 4,
+		score: function() {
+    	return $(this).attr('data-score');
+  	},
+		click: function (score) {
+			var id = gon.sequence_id;
+			var url = '/sequences/' + id + '/rate';
+			$.ajax({
+			method: 'POST',
+			url: url,
+			dataType: 'json',
+			data: {score: score}
+			}).success(function(){
+				console.log("Success");
+				displayFlash("#custom-success-flash");
+			}).fail(function(){
+				console.log("Error");
+				displayFlash("#custom-error-flash");
+			});
+		}
 	});
 
 });
