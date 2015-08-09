@@ -6,8 +6,8 @@ one:
   street: MyString
   town: MyString
   state_acronym: MyString
-  floors: 9.99
-  per_floor: 9.99
+  floors: 9
+  per_floor: 9
 
 two:
   id: 2
@@ -15,5 +15,5 @@ two:
   street: MyString
   town: MyString
   state_acronym: MyString
-  floors: 9.99
-  per_floor: 9.99
+  floors: 9
+  per_floor: 9
