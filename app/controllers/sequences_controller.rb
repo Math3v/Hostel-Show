@@ -3,6 +3,7 @@ require 'base64'
 class SequencesController < ApplicationController
   before_action :set_sequence, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user_or_admin, only: [:edit, :update, :destroy, :rate]
+  before_action :set_js_variables, only: [:edit, :show]
 
   # GET /sequences
   # GET /sequences.json
@@ -17,17 +18,7 @@ class SequencesController < ApplicationController
   # GET /sequences/1
   # GET /sequences/1.json
   def show
-    gon.sequence_id = @sequence.id
-    if user_signed_in?
-      sequence_rating = @sequence.ratings.where({ user_id: current_user.id }).first
-      if sequence_rating.nil?
-        @rating = 0
-      else
-        @rating = sequence_rating.score
-      end
-    else
-      @rating = @sequence.average_rating
-    end
+    set_rating
   end
 
   # GET /sequences/new
@@ -38,7 +29,6 @@ class SequencesController < ApplicationController
 
   # GET /sequences/1/edit
   def edit
-    gon.sequence_id = @sequence.id
     @locations = Location.all
   end
 
@@ -110,9 +100,30 @@ class SequencesController < ApplicationController
     def create_image
       data = params[:sequence][:image]
       image_data = Base64.decode64(data['data:image/png;base64,'.length .. -1])
+      file_path = "#{Rails.root}/app/assets/images/sequence_#{@sequence.id}.png"
 
-      File.open("#{Rails.root}/app/assets/images/sequence_#{@sequence.id}.png", 'wb') do |f|
+      File.delete(file_path) if File.exist?(file_path)
+      File.open(file_path, 'wb') do |f|
         f.write image_data
       end
+    end
+
+    def set_rating
+      if user_signed_in?
+        sequence_rating = @sequence.ratings.where({ user_id: current_user.id }).first
+        if sequence_rating.nil?
+          @rating = 0
+        else
+          @rating = sequence_rating.score
+        end
+      else
+        @rating = @sequence.average_rating
+      end
+    end
+
+    def set_js_variables
+      gon.sequence_id = @sequence.id
+      gon.sequence_floors = @sequence.location.floors.to_i
+      gon.sequence_per_floor = @sequence.location.per_floor.to_i
     end
 end

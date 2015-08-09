@@ -250,8 +250,8 @@ $(document).on('page:load ready', function() {
 
 	$("#createImage").click(function (){
 		var elem_size = 50;
-		var floors = 10;
-		var per_floor = 9;
+		var floors = gon.sequence_floors;
+		var per_floor = gon.sequence_per_floor;
 
 		$("#canvas").attr('width', per_floor * elem_size);
 		$("#canvas").attr('height', floors * elem_size);
