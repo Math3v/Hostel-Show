@@ -100,12 +100,36 @@ class SequencesController < ApplicationController
     def create_image
       data = params[:sequence][:image]
       image_data = Base64.decode64(data['data:image/png;base64,'.length .. -1])
-      file_path = "#{Rails.root}/app/assets/images/sequence_#{@sequence.id}.png"
+      file_path = "#{Rails.root}/public/sequence_#{@sequence.id}.png"
 
       File.delete(file_path) if File.exist?(file_path)
       File.open(file_path, 'wb') do |f|
         f.write image_data
       end
+
+      # picture_params = params[:picture]
+      # encoded_picture = picture_params[:data]
+      # content_type = picture_params[:content_type]
+      # image = Paperclip.io_adapters.for("data:#{content_type};base64,#{encoded_picture}")
+      # image.original_filename = picture_params[:filename]
+      # @picture.image = image
+
+      #StringIO.open(Base64.decode64(data)) do |_data|
+      #  _data.class.class_eval { attr_accessor :original_filename, :content_type }
+      # _data.original_filename = "file.png"
+      #  _data.content_type = "image/png"
+      #  @sequence.image = _data
+      #end
+
+      #image = Paperclip.io_adapters.for("data:image/png;base64,#{data}")
+      #image.content_type = "image/png"
+      # image.original_filename = "sequence_#{@sequence.id}.png"
+      # @sequence.image = image 
+      # if @sequence.save
+      #   render json: @sequence, status: :ok
+      # else
+      #   render json: @sequence.errors, status: :unprocessable_entity
+      # end
     end
 
     def set_rating
